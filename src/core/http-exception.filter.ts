@@ -11,7 +11,6 @@ export class HttpExceptionFilter implements ExceptionFilter { // 所有的过滤
         const response = ctx.getResponse();
         const request = ctx.getRequest();
         const status = exception.getStatus();
-        console.log(JSON.stringify(exception))
         response
             .status(status)
             .json({

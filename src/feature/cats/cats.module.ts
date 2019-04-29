@@ -8,7 +8,7 @@ import { LoggerMiddleware } from './../../shared/logger/logger.middleware';
 
     controllers: [CatsController],
     providers: [CatsService],
-    exports: [CatsService] // 模块都是单例的，我们可以在各个模块之间共享CatsService实例（@issue:如何使用？）
+    exports: [CatsService] // 模块都是单例的，我们可以在各个模块之间共享CatsService实例（@issue:如何使用？答案找到，就是你在别的地方用的时候，只是import是没有的）
 })
 // 依赖注入，如果现有实例已在其他地方请求，则返回现有实例
 // export class CatsModule{
