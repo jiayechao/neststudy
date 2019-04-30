@@ -18,6 +18,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AuthorsModule } from './feature/authors/authors.module';
 import { PostsService } from './feature/posts/posts.service';
 import { PostsModule } from './feature/posts/posts.module';
+import { CommentsService } from './feature/comments/comments.service';
 
 @Module({
   imports: [CatsModule, DogsModule, DatabaseModule, AuthModule, UsersModule, GraphQLModule.forRootAsync({
@@ -28,6 +29,7 @@ import { PostsModule } from './feature/posts/posts.module';
     useFactory: () => ({
       // typePaths: ['./**/*.graphql'],// 这个是架构模式使用的
       autoSchemaFile: 'schema.gql',
+      nstallSubscriptionHandlers: true
     }),
      // 可以使用 autoSchemaFile 向 options 对象添加属性。
     //还可以添加buildSchemaOptions 属性 - 一个将传递给 buildSchema() 函数的选项对象（从type-graphql包中）
@@ -36,17 +38,18 @@ import { PostsModule } from './feature/posts/posts.module';
  controllers: [AppController, CatsController], // cats模快化后不再需要单独注入controllers了
   providers: [
     AppService, 
-    // {
-    //   provide: APP_FILTER,
-    //   useClass: HttpExceptionFilter
-    // },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter
+    },
     {
       provide: APP_PIPE,
       useClass: ValidationPipe
     },
     AuthService,
     UsersService,
-    PostsService
+    PostsService,
+    CommentsService
   ],
 })
 export class AppModule {}

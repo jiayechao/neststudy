@@ -3,16 +3,26 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+"""作者"""
 type Author {
   id: Int!
   age: Int!
+
+  """巴拉巴拉"""
   firstName: String
   lastName: String
   posts: [Post!]!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: Int!
+  content: String!
 }
 
 type Mutation {
   upvotePost(postId: Float!): Post!
+  upvotePostByObj(upvotePostData: UpvotePostInput!): Post!
 }
 
 type Post {
@@ -23,4 +33,12 @@ type Post {
 
 type Query {
   author(id: Int!): Author!
+}
+
+type Subscription {
+  commentAdded: Comment!
+}
+
+input UpvotePostInput {
+  postId: Float!
 }

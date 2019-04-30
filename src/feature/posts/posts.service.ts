@@ -15,4 +15,11 @@ export class PostsService {
       title: '啦啦啦啦德玛西亚'
     }
   }
+
+  upvoteByIdObj(postIdObj: {postId: number}) {
+    return {
+      id: postIdObj.postId,
+      title: '啦啦啦啦德玛西亚'
+    }
+  }
 }
